@@ -17,10 +17,10 @@ router.post("/signup", async (req, res) => {
   
     const mail_isExist = await User.findOne({ email: req.body.user.email.toLowerCase() });
 
-    // if (mail_isExist) {
-    //     res.status(404).send("Adresse mail existe");
-    //     return;
-    // }
+    if (mail_isExist) {
+        res.status(404).send("Adresse mail existe");
+        return;
+    }
     
     const hashPassowrd = await bcrypt.hash(req.body.user.password, 10);
     try {
@@ -41,8 +41,8 @@ router.post("/signup", async (req, res) => {
             userId: user._id,
             token: crypto.randomBytes(32).toString("hex"),
           }).save();
-          const url = `http://localhost:5000/user/verify/${user._id}/${token.token}`;
-        //  const url = `https://doctoplanet.com/user/verify/${user._id}/${token.token}`;
+        //   const url = `http://localhost:5000/user/verify/${user._id}/${token.token}`;
+         const url = `https://doctoplanet.com/user/verify/${user._id}/${token.token}`;
         const mail_sned = await sendmail(req.body.user.email.toLowerCase(),url,req.body.user.nom)
         
       //  if(!mail_sned.accepted)
