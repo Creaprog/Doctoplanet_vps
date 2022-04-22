@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 
 
 
-router.get("/all", async (req, res) => {
+router.get("/get_all", async (req, res) => {
 
   const consults = await Consul.find()
 
