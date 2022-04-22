@@ -58,6 +58,12 @@ const ConsulShema = mongoose.Schema({
     option: {
         type: String,
     },
+    paiement_link: {
+        type: String,
+    },
+    paypal_id: {
+        type: String,
+    },
     etat: {
         type: Number,
         default: 0

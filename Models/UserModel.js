@@ -12,7 +12,9 @@ const UserShema = mongoose.Schema({
     type: String,
     required: true,
   },
-
+  sexe: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,
@@ -27,6 +29,7 @@ const UserShema = mongoose.Schema({
     type: String,
     required: true,
   },
+
   tel: {
     type: String,
     required: true,
