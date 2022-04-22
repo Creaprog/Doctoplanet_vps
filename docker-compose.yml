@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  doctoplanet:
+    build: .
+    ports:
+      - "5000:5000"
+    command: node index.js
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.doctoplanet.entrypoints=websecure, web
+      - traefik.http.routers.doctoplanet.rule=Host(`doctoplanet.com`)
+      - traefik.http.routers.doctoplanet.tls=true
+      - traefik.http.routers.doctoplanet.tls.certresolver=production
+      - traefik.http.services.doctoplanet.loadbalancer.server.port=5000
+      - traefik.http.routers.doctoplanet.middlewares=chain-secure@file
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
