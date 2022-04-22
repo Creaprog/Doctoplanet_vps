@@ -14,19 +14,34 @@ const io = require("socket.io")(server, options);
 ConnectDB();
 
 // Middlewear
-const corsOptions ={
-  origin:'*', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200,
-}
+// const corsOptions ={
+//   origin:'*', 
+//   credentials:true,            //access-control-allow-credentials:true
+//   optionSuccessStatus:200,
+// }
 
-app.use(cors(corsOptions)) // Use this after the variable declaration
+// app.use(cors(corsOptions)) // Use this after the variable declaration
 
-app.all('*', function(req, res, next) {
+// app.all('*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
+
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization, 'Content-Type' : 'multipart/form-data' ,* "
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
   next();
 });
+
+app.use(cors())
 
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
