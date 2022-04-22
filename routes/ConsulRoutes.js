@@ -4,7 +4,6 @@ const Consul = require("../Models/ConsulModel");
 const nodemailer = require("nodemailer");
 
 
-
 router.get("/get_all", async (req, res) => {
   const consults = await Consul.find()
   res.send(consults)
