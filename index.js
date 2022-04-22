@@ -13,14 +13,15 @@ const io = require("socket.io")(server, options);
 // ConnectDB
 ConnectDB();
 
-// Middlewear
+// Middlewears
+
 const corsOptions ={
   origin:'*', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200,
 }
-
 app.use(cors(corsOptions)) // Use this after the variable declaration
+
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use("/assets", express.static("assets"));
