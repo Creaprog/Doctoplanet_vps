@@ -4,14 +4,20 @@ const Consul = require("../Models/ConsulModel");
 const nodemailer = require("nodemailer");
 
 
-router.get("/get_all", async (req, res) => {
+
+router.get("/all", async (req, res) => {
+
   const consults = await Consul.find()
+
   res.send(consults)
+
 });
 //GET CONSULT
 router.get("/get", async (req, res) => {
+
   try {
     const consults = await Consul.find({ id_user: req.query.id }).sort({ _id: -1 })
+
     res.send(consults)
   } catch (err) {
     return res.status(422).send(err.message);

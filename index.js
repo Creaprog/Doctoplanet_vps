@@ -13,15 +13,15 @@ const io = require("socket.io")(server, options);
 // ConnectDB
 ConnectDB();
 
-// Middlewear
+// Middlewears
+
 const corsOptions ={
   origin:'http://localhost:3000', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200,
 }
-
 app.use(cors(corsOptions)) // Use this after the variable declaration
- 
+
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use("/assets", express.static("assets"));
@@ -35,7 +35,7 @@ app.use("/consultation", require("./routes/ConsulRoutes"));
 app.use("/paiement/", require("./routes/StripeRoute"));
 app.use("/", require("./routes/MedicamentRoutes"));
  
-app.get("/call", (req, res) => {
+app.get("/id", (req, res) => {
   res.send(uuidv4());
 });
 
