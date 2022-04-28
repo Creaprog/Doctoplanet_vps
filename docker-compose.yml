@@ -15,6 +15,7 @@ services:
       - traefik.http.routers.doctoplanet.middlewares=chain-secure@file
     networks:
       - traefik
+    restart: unless-stopped
 networks:
   traefik:
     external: true
